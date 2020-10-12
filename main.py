@@ -40,7 +40,7 @@ if __name__ == '__main__':
     lr = float(args.lr)
     output_path = args.output_path
     task = TASK_DICT[dataset]
-    class_num = int(CLASS_DICT[dataset])  # for LIME evaluations
+    class_num = int(CLASS_DICT[dataset])
     special_tokens = {"[CLS]", "[SEP]"}  # special tokens we exclude for degradation test
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
