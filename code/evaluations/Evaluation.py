@@ -82,18 +82,16 @@ class EvaluationDegradation:
         # Calculate result
         original_prob, original_accuracy = degradation.return_original_result()
         degrad_prob, degrad_accuracy = degradation.return_degradation_result()
+        original_total_prob = sum(original_prob) / self.test_num
         original_total_accuracy = sum(original_accuracy) / self.test_num
         accumulated_degrad_prob = np.sum(np.array(degrad_prob), axis=0) / self.test_num
         accumulated_degrad_acc = np.sum(np.array(degrad_accuracy), axis=0) / self.test_num
-        print("original total accuracy is ", original_total_accuracy)
-        print("original probaility is ", original_prob)
+        print("original average accuracy is ", original_total_accuracy)
+        print("original average probability is ", original_total_prob)
         print("degradation accuracy is ", accumulated_degrad_acc)
         print("degradation probaility is ", accumulated_degrad_prob)
 
         return original_total_accuracy, original_prob, accumulated_degrad_acc, accumulated_degrad_prob
-
-    def plot_degrad_result(self):
-        pass
 
 
 def evaluation_degradation(model_state_dict_path,
