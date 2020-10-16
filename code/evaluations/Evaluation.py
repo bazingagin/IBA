@@ -91,7 +91,7 @@ class EvaluationDegradation:
         print("degradation accuracy is ", accumulated_degrad_acc)
         print("degradation probaility is ", accumulated_degrad_prob)
 
-        return original_total_accuracy, original_prob, accumulated_degrad_acc, accumulated_degrad_prob
+        return original_total_accuracy, original_total_prob, accumulated_degrad_acc, accumulated_degrad_prob
 
 
 def evaluation_degradation(model_state_dict_path,
