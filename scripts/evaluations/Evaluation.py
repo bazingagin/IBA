@@ -1,14 +1,6 @@
 from transformers import *
-import numpy as np
-import torch
-from lime.lime_text import LimeTextExplainer
-from captum.attr import IntegratedGradients
-
-from code.evaluations.Degradation import DegradationTest
-from code.evaluations.LIME_ import *
-from code.evaluations.IntegratedGradient_ import *
-from code.utils import *
-from code.methods import *
+from scripts.evaluations.Degradation import DegradationTest
+from scripts.methods import *
 
 np.random.seed(3)
 

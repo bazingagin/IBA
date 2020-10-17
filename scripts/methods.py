@@ -1,4 +1,4 @@
-from code.information_bottleneck.IBA import *
+from scripts.information_bottleneck.IBA import *
 
 np.random.seed(3)
 
