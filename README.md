@@ -1,5 +1,6 @@
 # Code for Paper: Inserting Information Bottleneck for Attribution in Transformers
 
+This paper is accepted to [EMNLP2020 Findings](https://2020.emnlp.org/papers/findings).  
 Below is the instruction of using IBA to visualize the attribution map for transformer, especially BERT.  
 
 ## Environment Setup
@@ -57,3 +58,4 @@ python main.py --data_path ${IMDB_DATA_PATH}
 
 ## Citation
 
+* Please consider cite the paper if you've found code useful :)
