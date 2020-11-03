@@ -10,11 +10,11 @@ if __name__ == '__main__':
                         help='interpretable method to evaluate, choices are: `iba`')
     parser.add_argument('--dataset', default='imdb',
                         help='dataset to evaluate, choices are: `imdb`, `mnli`, `rte`, `agnews`')
-    parser.add_argument('--data_path', default='../data/imdb', help='data path, can be a directory or filename')
-    parser.add_argument('--model_state_dict_path', default='finetuned_model/',
+    parser.add_argument('--data_path', default='data/aclImdb/test', help='data path, can be a directory or filename')
+    parser.add_argument('--model_state_dict_path', default='finetuned_model/imdb.model',
                         help='path stored fine tuned torch state dict')
     parser.add_argument('--model_pickled_dir', default=None, help='directory stored pickled fine tuned torch model')
-    parser.add_argument('--layer_idx', default=8, help="layer idx to insert with iba") # corresponds to the actual layer index - 1
+    parser.add_argument('--layer_idx', default=8, help="layer idx to insert with iba")
     parser.add_argument('--test_sample', default=1000, help="test sample number, you can simply input `all` if you want to evaluate the whole dataset")
     parser.add_argument('--degrad_step', default=10, help="degradation steps")
     parser.add_argument('--reverse', default=False, action="store_true", help="reverse the importance attribution")
