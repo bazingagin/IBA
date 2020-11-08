@@ -24,20 +24,28 @@ cd IBA && jupyter notebook IBA-tutorial.ipynb
 
 
 ## Evaluation
+0. Create directory
+```
+mkdir data && cd data
+```
 1. Download dataset
     * IMDB: <https://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz>
     * AGNews: <https://github.com/mhjabreel/CharCnn_Keras/tree/master/data/ag_news_csv> 
     * MNLI, RTE: <https://gluebenchmark.com/tasks>
+    
+    and untar archive file if necessary:
+      * `tar -xvf aclImdb_v1.tar.gz`
 2. Download fine-tuned model
 ```
 wget https://storage.googleapis.com/iba4nlp-saved-model/finetuned_model.zip
+unzip finetuned_model.zip
 ```
 `imdb` and `agnews` are pytorch state_dict while `RTE` and `MNLI` are pytorch pickled model
 
 3. Set data directory and model directory for each dataset. For example,
 ```
 export IMDB_DATA_PATH=data/aclImdb/test
-export IMDB_FINETUNED_MODEL=model/imdb.model
+export IMDB_FINETUNED_MODEL=finetuned_model/imdb.model
 ```
 4. Run! Below is the example of evaluation on 10 examples inserting IB after layer 9. You can use `all` for `test_sample` to evaluate on the whole dataset.
 ```
