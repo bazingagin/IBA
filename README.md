@@ -1,6 +1,6 @@
 # Code for Paper: Inserting Information Bottleneck for Attribution in Transformers
 
-This paper is accepted to [EMNLP2020 Findings](https://2020.emnlp.org/papers/findings).  
+This paper is accepted to [EMNLP2020 Findings](https://www.aclweb.org/anthology/2020.findings-emnlp.343/).  
 Below is the instruction of using IBA to visualize the attribution map for transformer, especially BERT.  
 
 ## Environment Setup
@@ -67,3 +67,21 @@ python main.py --data_path ${IMDB_DATA_PATH}
 ## Citation
 
 * Please consider cite the paper if you've found code useful :)
+
+```
+@inproceedings{jiang-etal-2020-inserting,
+    title = "{I}nserting {I}nformation {B}ottlenecks for {A}ttribution in {T}ransformers",
+    author = "Jiang, Zhiying  and
+      Tang, Raphael  and
+      Xin, Ji  and
+      Lin, Jimmy",
+    booktitle = "Findings of the Association for Computational Linguistics: EMNLP 2020",
+    month = nov,
+    year = "2020",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/2020.findings-emnlp.343",
+    pages = "3850--3857",
+    abstract = "Pretrained transformers achieve the state of the art across tasks in natural language processing, motivating researchers to investigate their inner mechanisms. One common direction is to understand what features are important for prediction. In this paper, we apply information bottlenecks to analyze the attribution of each feature for prediction on a black-box model. We use BERT as the example and evaluate our approach both quantitatively and qualitatively. We show the effectiveness of our method in terms of attribution and the ability to provide insight into how information flows through layers. We demonstrate that our technique outperforms two competitive methods in degradation tests on four datasets. Code is available at \url{https://github.com/bazingagin/IBA}.",
+}
+```
