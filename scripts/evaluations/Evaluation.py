@@ -1,4 +1,5 @@
-from transformers import *
+from lime.lime_text import LimeTextExplainer
+from captum.attr import IntegratedGradients
 from scripts.evaluations.Degradation import DegradationTest
 from scripts.methods import *
 
@@ -22,6 +23,12 @@ class EvaluationDegradation:
         if self.method_name == 'iba':
             self.saliency_func = layer_heatmap_iba
             self.saliency_func_args = [self.model, self.layer_idx, beta, lr, train_steps]
+        elif self.method_name == 'lime':
+            self.saliency_func = layer_heatmap_lime
+            self.saliency_func_args = [wrapper, pred_fn]
+        elif self.method_name == 'ig':
+            self.saliency_func = layer_heatmap_ig
+            self.saliency_func_args = [wrapper, pred_fn, self.tokenizer, self.model, self.device]
         elif self.method_name == 'random':
             self.saliency_func = np.random.uniform
             self.saliency_func_args = []
@@ -116,6 +123,14 @@ def evaluation_degradation(model_state_dict_path,
         model = BertForSequenceClassification.from_pretrained(model_pickled_dir, config=config)
         tokenizer = BertTokenizer.from_pretrained(model_pickled_dir)
         model.to(device)
+    if method == 'ig':
+        wrapper = BertModelWrapper(model)
+        pred_fn = IntegratedGradients(wrapper)
+    elif method == 'lime':
+        wrapper = LimeTextExplainer(class_names=list(range(class_num)))
+        lime_bert = LIME_BERT(model_state_dict_path, model_pickled_dir, class_num)
+        model = lime_bert.model
+        pred_fn = lime_bert.predict_prob
 
     # Initialize Evaluation
     evaluation = EvaluationDegradation(model, tokenizer, method, task, special_tokens, test_data, test_num, degrad_num,

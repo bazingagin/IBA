@@ -1,4 +1,6 @@
 from scripts.information_bottleneck.IBA import *
+from scripts.evaluations.IntegratedGradient_ import *
+from scripts.evaluations.LIME_ import *
 
 np.random.seed(3)
 
@@ -46,3 +48,17 @@ def layer_heatmap_iba(text1, text2, target, text_words, text_ids, segment_ids, m
     reader = initialize_reader(model, layer, features, beta, lr, train_steps)
     heatmap = reader.bert_heatmap(text_ids, target, segment_ids)
     return heatmap
+
+
+def layer_heatmap_ig(text1, text2, target, text_words, text_ids, segment_ids, bert_ig_wrapper, ig, tokenizer, model, device):
+    layer_saliency = interpret_sentence(bert_ig_wrapper, tokenizer, device, ig, text1, text2)
+    return layer_saliency
+
+
+def layer_heatmap_lime(text1, text2, target, text_words, text_ids, segment_ids, explainer, pred_fn):
+    if text2 is None:
+        exp = explainer.explain_instance(text1, pred_fn, num_features=len(text_words), num_samples=100)
+    else:
+        exp = explainer.explain_instance(' ****** '.join([text1, text2]), pred_fn, num_features=len(text_words),num_samples=75)
+    layer_saliency = generate_lime_attribution(exp, text_words)
+    return layer_saliency

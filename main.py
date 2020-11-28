@@ -7,7 +7,7 @@ from scripts.utils import *
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="evaluations different interpretable methods")
     parser.add_argument('--method', default='iba',
-                        help='interpretable method to evaluate, choices are: `iba`')
+                        help='interpretable method to evaluate, choices are: `iba`, `ig`, `lime`')
     parser.add_argument('--dataset', default='imdb',
                         help='dataset to evaluate, choices are: `imdb`, `mnli`, `rte`, `agnews`')
     parser.add_argument('--data_path', default='data/aclImdb/test', help='data path, can be a directory or filename')
